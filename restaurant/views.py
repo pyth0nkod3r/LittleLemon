@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from rest_framework.generics import (
-    DestroyAPIView,
     ListCreateAPIView,
-    RetrieveUpdateAPIView,
+    RetrieveUpdateDestroyAPIView,
 )
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
@@ -16,15 +15,16 @@ def index(request):
     return render(request, "index.html", {})
 
 
-class Menu(ListCreateAPIView):
+class MenuItem(ListCreateAPIView):
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
 
-class SingleMenu(RetrieveUpdateAPIView, DestroyAPIView):
+class SingleMenu(RetrieveUpdateDestroyAPIView):
+    queryset = Menu.objects.all()
     serializer_class = MenuSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
 
 class BookingViewSet(ModelViewSet):
