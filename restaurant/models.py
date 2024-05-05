@@ -9,7 +9,7 @@ class Booking(models.Model):
     booking_date = models.DateTimeField(auto_created=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.name}  |  {str(self.booking_date)}"
 
 
 class Menu(models.Model):
@@ -18,7 +18,4 @@ class Menu(models.Model):
     inventory = models.IntegerField(default=5)
 
     def __str__(self):
-        return self.title
-
-
-
+        return f"{self.title} : {str(self.price)}"
